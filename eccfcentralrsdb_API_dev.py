@@ -14,7 +14,7 @@ import numpy as np
 pd.set_option('display.max_rows', None)
 pd.set_option('display.max_columns', None)
 pd.options.mode.chained_assignment = None  # default='warn' // to hide the error: SettingWithCopyWarning
-from requests_kerberos import HTTPKerberosAuth, OPTIONAL
+#from requests_kerberos import HTTPKerberosAuth, OPTIONAL
 from urllib3.exceptions import InsecureRequestWarning #from requests.packages.urllib3.exceptions import InsecureRequestWarning
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 req = requests.Session()
@@ -52,8 +52,8 @@ while True:
             sleep(2)
             
             #get_data
-            nn = req.get(url_now, auth=HTTPKerberosAuth(mutual_authentication=OPTIONAL), verify=False).content
-            mm = req.get(url_15_mins, auth=HTTPKerberosAuth(mutual_authentication=OPTIONAL), verify=False).content
+            nn = req.get(url_now).content
+            mm = req.get(url_15_mins).content
             #hh = req.get(url_7_days, auth=HTTPKerberosAuth(mutual_authentication=OPTIONAL), verify=False).content
             
             now = pd.read_html(nn)[-1]
