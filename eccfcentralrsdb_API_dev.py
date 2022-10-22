@@ -1,9 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[ ]:
-
-
 url_now = 'https://monitorportal.amazon.com/mws/data?Action=GetGraph&Version=2007-07-07&SchemaName1=Service&DataSet1=Prod&Marketplace1=CascadesAllocatorService%3Aprod%3AUSAmazon&HostGroup1=ALL&Host1=ALL&ServiceName1=CascadesAllocatorService&MethodName1=ALL&Client1=ALL&MetricClass1=NONE&Instance1=NONE&Metric1=eccfcentralrsdb%3Atotal%3Apending&Period1=OneMinute&Stat1=p100&LiveData1=true&Label1=Job%20Runs%20currently%20Waiting%20for%20resources&UserLabel1=Job%20Runs%20currently%20Waiting%20for%20resources&SchemaName2=Service&Metric2=eccfcentralrsdb%3Atotal%3Aallocated&YAxisPreference2=right&Label2=Job%20Runs%20currently%20Executing&UserLabel2=Job%20Runs%20currently%20Executing&HeightInPixels=1130&WidthInPixels=1517&GraphTitle=eccfcentralrsdb%20WaitingForResources%20vs.%20Executing&TZ=Africa%2FCairo@TZ%3A%20Cairo&LabelLeft=Job%20Runs&VerticalLine1=MCM-7465630%20-%20@%202017%2F11%2F08%2011%3A18am%2C&StartTime1=-PT1M&EndTime1=-PT0M'
 #url_7_days = 'https://monitorportal.amazon.com/mws/data?Action=GetGraph&Version=2007-07-07&SchemaName1=Service&DataSet1=Prod&Marketplace1=CascadesAllocatorService%3Aprod%3AUSAmazon&HostGroup1=ALL&Host1=ALL&ServiceName1=CascadesAllocatorService&MethodName1=ALL&Client1=ALL&MetricClass1=NONE&Instance1=NONE&Metric1=eccfcentralrsdb%3Atotal%3Apending&Period1=OneHour&Stat1=p100&LiveData1=true&Label1=Job%20Runs%20currently%20Waiting%20for%20resources&UserLabel1=Job%20Runs%20currently%20Waiting%20for%20resources&SchemaName2=Service&Metric2=eccfcentralrsdb%3Atotal%3Aallocated&YAxisPreference2=right&Label2=Job%20Runs%20currently%20Executing&UserLabel2=Job%20Runs%20currently%20Executing&HeightInPixels=1130&WidthInPixels=1517&GraphTitle=eccfcentralrsdb%20WaitingForResources%20vs.%20Executing&TZ=UTC@TZ%3A UTC&LabelLeft=Job%20Runs&VerticalLine1=MCM-7465630%20-%20@%202017%2F11%2F08%2011%3A18am%2C&StartTime1=-P7D&EndTime1=-P1D' #&TZ=Asia%2FDubai@TZ%3A%20Dubai& / &TZ=UTC@TZ%3A UTC&
 url_15_mins = 'https://monitorportal.amazon.com/mws/data?Action=GetGraph&Version=2007-07-07&SchemaName1=Service&DataSet1=Prod&Marketplace1=CascadesAllocatorService%3Aprod%3AUSAmazon&HostGroup1=ALL&Host1=ALL&ServiceName1=CascadesAllocatorService&MethodName1=ALL&Client1=ALL&MetricClass1=NONE&Instance1=NONE&Metric1=eccfcentralrsdb%3Atotal%3Apending&Period1=FiveMinute&Stat1=p100&LiveData1=true&Label1=Job%20Runs%20currently%20Waiting%20for%20resources&UserLabel1=Job%20Runs%20currently%20Waiting%20for%20resources&SchemaName2=Service&Metric2=eccfcentralrsdb%3Atotal%3Aallocated&YAxisPreference2=right&Label2=Job%20Runs%20currently%20Executing&UserLabel2=Job%20Runs%20currently%20Executing&HeightInPixels=1130&WidthInPixels=1517&GraphTitle=eccfcentralrsdb%20WaitingForResources%20vs.%20Executing&TZ=Africa%2FCairo@TZ%3A%20Cairo&LabelLeft=Job%20Runs&VerticalLine1=MCM-7465630%20-%20@%202017%2F11%2F08%2011%3A18am%2C&StartTime1=-PT15M&EndTime1=-PT0M'
@@ -91,22 +88,5 @@ while True:
     send_chime(result)
     
     sleep(60)
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
+    
+    
