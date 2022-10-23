@@ -11,7 +11,7 @@ import numpy as np
 pd.set_option('display.max_rows', None)
 pd.set_option('display.max_columns', None)
 pd.options.mode.chained_assignment = None  # default='warn' // to hide the error: SettingWithCopyWarning
-from requests_kerberos import HTTPKerberosAuth, OPTIONAL
+#from requests_kerberos import HTTPKerberosAuth, OPTIONAL
 from urllib3.exceptions import InsecureRequestWarning #from requests.packages.urllib3.exceptions import InsecureRequestWarning
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 req = requests.Session()
@@ -25,6 +25,33 @@ import json
 import pendulum
 from tabulate import tabulate
 from time import sleep
+import os
+import time
+
+def get_mwinit_cookie():
+    MidwayConfigDir = os.path.join(os.path.expanduser("~"), ".midway")
+    MidwayCookieJarFile = os.path.join(MidwayConfigDir, "cookie")
+    fields = []
+    keyfile = open(MidwayCookieJarFile, "r")
+    for line in keyfile:
+        # parse the record into fields (separated by whitespace)
+        fields = line.split()
+        if len(fields) != 0:
+            # get the yubi session token and expire time
+            if fields[0] == "#HttpOnly_midway-auth.amazon.com":
+                session_token = fields[6].replace("\n", "")
+                expires = fields[4]
+            # get the user who generated the session token
+            elif fields[0] == "midway-auth.amazon.com":
+                username = fields[6].replace("\n", "")
+    keyfile.close()
+    # make sure the session token hasn't expired
+    if time.gmtime() > time.gmtime(int(expires)):
+        raise SystemError("Your Midway token has expired. Run mwinit to renew")
+    # construct the cookie value required by calls to k2
+    cookie = {"username": username, "session": session_token}
+    return cookie
+#get_mwinit_cookie()
 
 def send_chime(df):
     webhook_url = f'https://hooks.chime.aws/incomingwebhooks/590459e3-331d-4cb7-82af-8b9136130490?token=MzZMampLc1Z8MXxrdmZJQTJyeE5EQU5OLVloTGQ0TWtEWHBKYmFRWlZpVHBTUE5MR0M2Q0lr'
@@ -49,8 +76,8 @@ while True:
             sleep(2)
             
             #get_data
-            nn = req.get(url_now, auth=HTTPKerberosAuth(mutual_authentication=OPTIONAL), verify=False).content
-            mm = req.get(url_15_mins, auth=HTTPKerberosAuth(mutual_authentication=OPTIONAL), verify=False).content
+            nn = req.get(url_now, cookies=get_mwinit_cookie(), verify=False).content
+            mm = req.get(url_15_mins, cookies=get_mwinit_cookie(), verify=False).content
             #hh = req.get(url_7_days, auth=HTTPKerberosAuth(mutual_authentication=OPTIONAL), verify=False).content
             
             now = pd.read_html(nn)[-1]
